@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LINQ_D1", "LINQ_D1.csproj", "{6A74F15C-859B-4065-B466-F055C115B04A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQD11", "..\LINQD11\LINQD11.csproj", "{50719B5E-21F6-43AD-BC5C-8A9FCE3308F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A74F15C-859B-4065-B466-F055C115B04A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A74F15C-859B-4065-B466-F055C115B04A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A74F15C-859B-4065-B466-F055C115B04A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A74F15C-859B-4065-B466-F055C115B04A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50719B5E-21F6-43AD-BC5C-8A9FCE3308F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50719B5E-21F6-43AD-BC5C-8A9FCE3308F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50719B5E-21F6-43AD-BC5C-8A9FCE3308F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50719B5E-21F6-43AD-BC5C-8A9FCE3308F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6EFA1B55-FF4F-4B26-AF73-CB468BA6F5CD}
+	EndGlobalSection
+EndGlobal
