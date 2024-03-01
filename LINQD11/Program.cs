@@ -100,18 +100,19 @@ namespace LINQD11
 
             //result.Print($"Result for Page No:{page} with startRecord:{startRec},endRecord:{endRec}");
             #endregion
-
-            #region Quantifiers
+                
+            //**********************************************************************
             //RunAnyDemo();
             //RunAllDemo();
             //RunContains();
             //RunGrouping();
             //RunJoin();
             //RunQuerySyntax();
-            RunGroupJoin();
+            //RunGroupJoin();
 
         }
 
+        #region Quantifiers
         private static void RunGroupJoin()
         {
             var employee = Repository.LoadEmployees();
@@ -137,8 +138,7 @@ namespace LINQD11
                       select g;
 
             foreach ( var item in res )
-            {
-                
+            {                
                 foreach (var item1 in item)
                 {
                     Console.WriteLine($"{item1.FullName}");
@@ -163,25 +163,22 @@ namespace LINQD11
         {
             var employee = Repository.LoadEmployees();
             var department = Repository.LoadDepartment();
-
             var res = from emp in employee
                       join dept in department
                       on emp.DepartmentId equals dept.Id
                       select new {fullName = emp.FullName , departmentName = dept.Name};
-
             foreach (var item in res)
             {
                 Console.WriteLine(item);
             }
         }
 
+        
         private static void RunJoin()
         {
             var employee = Repository.LoadEmployees();
             var department = Repository.LoadDepartment();
-
             var res = employee.Join(department, emp => emp.DepartmentId, dep => dep.Id, (emp, dep) => new { full = emp.FullName, depart = dep.Name });
-
             foreach (var item in res)
             {
                 Console.WriteLine(item);
@@ -189,105 +186,109 @@ namespace LINQD11
 
         }
 
-        //private static void RunGrouping()
-        //{
-        //    var employees = Repository.LoadEmployees();
-        //    /*var groups = employees.GroupBy(e => e.Dpartment);
-        //    foreach ( var group in groups)
-        //    {
-        //        //Console.WriteLine(group.Key);
-        //        group.Print($"{group.Key}");
-        //    }*/
+        
+        private static void RunGrouping()
+        {
+           var employees = Repository.LoadEmployees();
+           /*var groups = employees.GroupBy(e => e.Dpartment);
+           foreach ( var group in groups)
+           {
+               //Console.WriteLine(group.Key);
+               group.Print($"{group.Key}");
+           }*/
 
-        //    /*var res = from e in employees
-        //              group e by e.Dpartment;
-        //    foreach (var group in res)
-        //    {
-        //        //Console.WriteLine(group.Key);
-        //        group.Print($"{group.Key}");
-        //    }*/
+           /*var res = from e in employees
+                     group e by e.Dpartment;
+           foreach (var group in res)
+           {
+               //Console.WriteLine(group.Key);
+               group.Print($"{group.Key}");
+           }*/
 
-        //    var groups = employees.ToLookup(e => e.Dpartment);
-        //    foreach(var group in groups)
-        //    {
-        //        group.Print($"{group.Key}");
-        //    }
-        //}
+           var groups = employees.ToLookup(e => e.Dpartment);
+           foreach(var group in groups)
+           {
+               group.Print($"{group.Key}");
+           }
+        }
 
-        //private static void RunContains()
-        //{
-        //    Console.WriteLine();
-        //    Console.WriteLine("+++++++++++++++++");
-        //    Console.WriteLine("RunContains()");
-        //    Console.WriteLine("+++++++++++++++++");
-        //    Console.WriteLine();
+        
+        private static void RunContains()
+        {
+           Console.WriteLine();
+           Console.WriteLine("+++++++++++++++++");
+           Console.WriteLine("RunContains()");
+           Console.WriteLine("+++++++++++++++++");
+           Console.WriteLine();
 
-        //    var employee = Repository.LoadEmployees();
-        //    /*var res = employee.Any(x => x.Name.Contains("ee"));
-        //    Console.WriteLine(res);*/
+           var employee = Repository.LoadEmployees();
+           /*var res = employee.Any(x => x.Name.Contains("ee"));
+           Console.WriteLine(res);*/
 
-        //    /*var res = 
-        //        from e in employee
-        //        where e.Name.Contains("ee")
-        //        select e;
+           /*var res = 
+               from e in employee
+               where e.Name.Contains("ee")
+               select e;
 
-        //    res.Print("employee whose name contain 'ee'");*/
+           res.Print("employee whose name contain 'ee'");*/
 
-        //    var e = new Employee { Email = "Buck.Wallace@example.com" };
-        //    var res = employee.Contains(e);
-        //    Console.WriteLine(res);
-        //}
+           var e = new Employee { Email = "Buck.Wallace@example.com" };
+           var res = employee.Contains(e);
+           Console.WriteLine(res);
+        }
+        
 
-        //private static void RunAllDemo()
-        //{
-        //    Console.WriteLine();
-        //    Console.WriteLine("+++++++++++++++++");
-        //    Console.WriteLine("RunAllDemo()");
-        //    Console.WriteLine("+++++++++++++++++");
-        //    Console.WriteLine();
+        private static void RunAllDemo()
+        {
+           Console.WriteLine();
+           Console.WriteLine("+++++++++++++++++");
+           Console.WriteLine("RunAllDemo()");
+           Console.WriteLine("+++++++++++++++++");
+           Console.WriteLine();
 
-        //    var employee = Repository.LoadEmployees();
-        //    var res1 = employee.All(x => !string.IsNullOrEmpty(x.Email));
-        //    Console.WriteLine($"check for all employee has an email {res1}");
+           var employee = Repository.LoadEmployees();
+           var res1 = employee.All(x => !string.IsNullOrEmpty(x.Email));
+           Console.WriteLine($"check for all employee has an email {res1}");
 
-        //    var res2 = employee.All(x => x.Skills.Any(s => s == "C#"));
-        //    Console.WriteLine($"check for all employee has a C# as skill {res2}");
+           var res2 = employee.All(x => x.Skills.Any(s => s == "C#"));
+           Console.WriteLine($"check for all employee has a C# as skill {res2}");
 
-        //    var res3 = from e in employee
-        //               where e.Skills.All(s => s.Length > 3)
-        //               select e;
-        //    res3.Print("Employee whose skills length > 3");
+           var res3 = from e in employee
+                      where e.Skills.All(s => s.Length > 3)
+                      select e;
+           res3.Print("Employee whose skills length > 3");
 
 
-        //    var res4 = from e in employee
-        //               where e.Skills.Any(s => s.Length > 3)
-        //               select e;
-        //    res4.Print("Any");
-        //}
+           var res4 = from e in employee
+                      where e.Skills.Any(s => s.Length > 3)
+                      select e;
+           res4.Print("Any");
+        }
 
-        //private static void RunAnyDemo()
-        //{
-        //    Console.WriteLine();
-        //    Console.WriteLine("+++++++++++++++++");
-        //    Console.WriteLine("RunAnyDemo()");
-        //    Console.WriteLine("+++++++++++++++++");
-        //    Console.WriteLine();
+        
+        private static void RunAnyDemo()
+        {
+           Console.WriteLine();
+           Console.WriteLine("+++++++++++++++++");
+           Console.WriteLine("RunAnyDemo()");
+           Console.WriteLine("+++++++++++++++++");
+           Console.WriteLine();
 
-        //    var employee = Repository.LoadEmployees();
-        //    /*var res1 = employee.Any(x => x.Name.StartsWith("jac" , StringComparison.OrdinalIgnoreCase));
-        //    Console.WriteLine(res1);*/
+           var employee = Repository.LoadEmployees();
+           /*var res1 = employee.Any(x => x.Name.StartsWith("jac" , StringComparison.OrdinalIgnoreCase));
+           Console.WriteLine(res1);*/
 
-        //    var res2 = employee.Any(x => x.Salary < 10000);
-        //    Console.WriteLine(res2);
+           var res2 = employee.Any(x => x.Salary < 10000);
+           Console.WriteLine(res2);
 
-        //    var res2_2 = from emp in employee
-        //                 where emp.Salary < 10000
-        //                 select emp;
-        //    res2_2.Print("Employee who salary < 10000");
+           var res2_2 = from emp in employee
+                        where emp.Salary < 10000
+                        select emp;
+           res2_2.Print("Employee who salary < 10000");
 
-        //    /*var res3 = employee.Any(x => x.Skills.Count == 10);
-        //    Console.WriteLine(res3);*/
-        //}
+           /*var res3 = employee.Any(x => x.Skills.Count == 10);
+           Console.WriteLine(res3);*/
+        }
 
         #endregion
     }
