@@ -877,10 +877,7 @@ namespace LINQD11
         //    };
         //}
 
-
-
-
-
+        //********************************************************************************************************************************
         public static IEnumerable<Department> LoadDepartment()
         {
             return new List<Department> {
